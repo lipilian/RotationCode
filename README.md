@@ -1,7 +1,7 @@
 # RotationTracking
 
 1. (Optional) use the RealSense.py document to manage the realsense D435 model to read the     
-bag file to generate the raw image from left and rigth camera.
+bag file to generate the raw image from left and right camera.
 
 Example:
 python RealSense.py -d "path to save the raw image" -i "bag file path"
