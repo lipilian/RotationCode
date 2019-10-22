@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import glob
 import argparse
-
+import pickle
 #----------------------------------
 class StereoCalibration(object):
     def __init__(self, filepath):
@@ -77,6 +77,9 @@ class StereoCalibration(object):
                             ('rvecs2', self.r2), ('R', R), ('T', T),
                             ('E', E), ('F', F)])
         cv2.destroyAllWindows()
+        output = open('camera_model.pkl', 'wb')
+        pickle.dump(camera_model, output)
+        output.close()
         return camera_model
 
 if __name__ == '__main__':
