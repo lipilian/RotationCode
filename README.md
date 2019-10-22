@@ -4,7 +4,7 @@
 bag file to generate the raw image from left and rigth camera.
 
 Example:
-python RealSense.py -d <path to save the raw image> -i <bag file path>
+python RealSense.py -d "path to save the raw image" -i "bag file path"
 
 2. use the calibrateStereo.py document to calibrate the two camera
 (Attention, if you need to change the chessboard size, you need to change the parameter in this file)
@@ -40,4 +40,4 @@ F: Fundamental matrix of left and right camera
 
 Example:
 
-python calibrateStereo.py <path for your calibration image data>
+python calibrateStereo.py "path for your calibration image data"
