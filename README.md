@@ -1,6 +1,6 @@
 # RotationTracking
 
-1. (Optional) use the RealSense.py document to manage the realsense D435 model to read the
+1. (Optional) use the RealSense.py document to manage the realsense D435 model to read the     
 bag file to generate the raw image from left and rigth camera.
 
 Example:
