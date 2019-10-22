@@ -16,17 +16,28 @@ it fixed the focus length (usually people won't use autofocus for stereo calibra
 
 it assumed no tangent distortion
 
-it will save camera model as pkl file for forturn use
+it will save camera model as pkl file for future use
+
 format dictionary
+
 Intrinsic_mtx_1: intrinsic matrix of left and right camera for focus length and center point
+
 Intrinsic_mtx_2:
+
 dist_1, dist_2: distortion matrix for calibration
+
 rvecs1, rvecs2: rotation vectors for two camera
+
 R: rotation matrix between left and right camera
+
 T: translation matrix between left and right camera
+
 E: Essential matrix of left and right camera
+
 F: Fundamental matrix of left and right camera
 
 
+
 Example:
+
 python calibrateStereo.py <path for your calibration image data>
