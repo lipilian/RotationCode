@@ -8,9 +8,12 @@ python RealSense.py -d <path to save the raw image> -i <bag file path>
 
 2. use the calibrateStereo.py document to calibrate the two camera
 (Attention, if you need to change the chessboard size, you need to change the parameter in this file)
+
 2.1 flags
 it used fix intrinsic parameters
+
 it fixed the focus length (usually people won't use autofocus for stereo calibration)
+
 it assumed no tangent distortion
 
 it will save camera model as pkl file for forturn use
