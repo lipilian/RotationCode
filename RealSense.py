@@ -12,8 +12,8 @@ def main():
         config = rs.config()
         rs.config.enable_device_from_file(config, args.input)
         pipeline = rs.pipeline()
-        config.enable_stream(rs.stream.infrared, 1, 848, 480, rs.format.y8, 90)
-        config.enable_stream(rs.stream.infrared, 2, 848, 480, rs.format.y8, 90)
+        config.enable_stream(rs.stream.infrared, 1, 1280, 720, rs.format.y8, 30)
+        config.enable_stream(rs.stream.infrared, 2, 1280, 720, rs.format.y8, 30)
         pipeline.start(config)
         i = 0
         while True:
