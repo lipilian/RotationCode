@@ -36,8 +36,18 @@ E: Essential matrix of left and right camera
 
 F: Fundamental matrix of left and right camera
 
-
-
 Example:
 
 python calibrateStereo.py "path for your calibration image data"
+
+datafile "camera_model.pkl" will be stored in current folder with code for those information.
+
+3. Goturn for multi object tracking system (developing)
+
+4. Background remove and single object tracking:
+
+save at least 200 frames of static background images into backgroundImage folder.
+
+python script will average those frames and user need to adjust minimum threshold to help detect the moving object of tracking.
+
+for test ball case (I use 7).
