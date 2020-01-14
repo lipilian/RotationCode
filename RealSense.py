@@ -16,7 +16,8 @@ def main():
         config.enable_stream(rs.stream.infrared, 2, 1280, 720, rs.format.y8, 30)
         pipeline.start(config)
         i = 0
-        while True:
+        count = int(input("Number of frame you want "))
+        while True and i < count:
             print("Saving frame:", i)
             frames = pipeline.wait_for_frames()
             ir1_frame = frames.get_infrared_frame(0) # Left IR Camera, it allows 0, 1 or no input

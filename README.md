@@ -1,5 +1,8 @@
 # RotationTracking
 
+# windows batch file to automatically run source code
+* put "Rotation" File on Desktop if you use windows
+
 1. (Optional) use the RealSense.py document to manage the realsense D435 model to read the     
 bag file to generate the raw image from left and right camera.
 
@@ -44,9 +47,11 @@ datafile "camera_model.pkl" will be stored in current folder with code for those
 
 3. Goturn for multi object tracking system (developing)
 
-4. Background remove and single object tracking:
+4. Rectify and undistort background images and target images.
 
-save at least 200 frames of static background images into backgroundImage folder.
+5. Background remove and single object tracking:
+
+save at least 100 frames of static background images into backgroundImage folder.
 
 python script will average those frames and user need to adjust minimum threshold to help detect the moving object of tracking.
 

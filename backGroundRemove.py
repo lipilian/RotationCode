@@ -18,7 +18,7 @@ def main():
     leftBackground = np.float32(imgLeft1)
     rightBackground = np.float32(imgRight1)
 
-    for i in range(1, 200):
+    for i in range(1, 100):
         img_l = cv2.imread(images_left[i])
         img_r = cv2.imread(images_right[i])
         gray_l = cv2.cvtColor(img_l, cv2.COLOR_BGR2GRAY)
