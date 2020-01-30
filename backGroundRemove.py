@@ -57,6 +57,10 @@ def main():
         contour_sizes = [(cv2.contourArea(contour), contour) for contour in contoursLeft]
         biggestContourLeft = max(contour_sizes, key=lambda x: x[0])[1]
         (x,y,w,h) = cv2.boundingRect(biggestContourLeft)
+        x = x - 50
+        y = y - 50
+        w = w + 100
+        h = h + 100
         boxLeft.append([x,y,w,h])
         cv2.rectangle(img_l, (x,y), (x+w, y+h), (0, 255, 0), 2)
         cv2.imshow('Bounding box for Left Camera', img_l)
@@ -83,6 +87,10 @@ def main():
         contour_sizes = [(cv2.contourArea(contour), contour) for contour in contoursRight]
         biggestContourRight = max(contour_sizes, key=lambda x: x[0])[1]
         (x,y,w,h) = cv2.boundingRect(biggestContourRight)
+        x = x - 50
+        y = y - 50
+        w = w + 100
+        h = h + 100
         boxRight.append([x,y,w,h])
         cv2.rectangle(img_r, (x,y), (x+w, y+h), (0, 255, 0), 2)
         cv2.imshow('Bounding box for Left Camera', img_r)
