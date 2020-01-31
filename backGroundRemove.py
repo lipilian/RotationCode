@@ -4,13 +4,13 @@ import glob
 import argparse
 import imutils
 import pickle
-
+import scipy.io
 def main():
     #%% background image averaging
     print("...Loading background image data and averaging them (200 images)")
-    backgroundPath = "../backgroundImage"
-    images_left = glob.glob(backgroundPath + "/Left" + '*.png')
-    images_right = glob.glob(backgroundPath + "/Right" + '*.png')
+    backgroundPath = "../backgroundUndistort"
+    images_left = glob.glob(backgroundPath + "/Left/" + '*.png')
+    images_right = glob.glob(backgroundPath + "/Right/" + '*.png')
     images_left.sort()
     images_right.sort()
     imgLeft1 = cv2.cvtColor(cv2.imread(images_left[0]), cv2.COLOR_BGR2GRAY)
@@ -23,8 +23,8 @@ def main():
         img_r = cv2.imread(images_right[i])
         gray_l = cv2.cvtColor(img_l, cv2.COLOR_BGR2GRAY)
         gray_r = cv2.cvtColor(img_r, cv2.COLOR_BGR2GRAY)
-        cv2.accumulateWeighted(gray_l, leftBackground, 0.005)
-        cv2.accumulateWeighted(gray_r, rightBackground, 0.005)
+        cv2.accumulateWeighted(gray_l, leftBackground, 0.01)
+        cv2.accumulateWeighted(gray_r, rightBackground, 0.01)
     leftBackground = np.uint8(cv2.convertScaleAbs(leftBackground))
     rightBackground = np.uint8(cv2.convertScaleAbs(rightBackground))
     print("..plot the left camera background and right camera background...")
@@ -36,13 +36,14 @@ def main():
     cv2.destroyWindow('right Camera')
     cv2.waitKey(1)
     #%% background image substraction
-    targetPath = "../targetImage"
-    images_left = glob.glob(targetPath + "/Left" + '*.png')
-    images_right = glob.glob(targetPath + "/Right" + '*.png')
+    targetPath = "../targetImageUndistort"
+    images_left = glob.glob(targetPath + "/Left/" + '*.png')
+    images_right = glob.glob(targetPath + "/Right/" + '*.png')
     images_left.sort()
     images_right.sort()
+
     #%% left camera process
-    thresholdValue = int(input("Give a threshold value for Left camera to remove the background(try to type 25)"))
+    thresholdValue = args.left
     boxLeft = []
     for i, fname in enumerate(images_left):
         img_l = cv2.imread(images_left[i])
@@ -68,11 +69,9 @@ def main():
         if k == 27:
             break
     cv2.destroyAllWindows()
-    np.save('LeftCameraBox.npy',np.array(boxLeft))
-
 
     #%% right camera process
-    thresholdValue = int(input("Give a threshold value for Right camera to remove the background(try to type 25)"))
+    thresholdValue = args.right
     boxRight = []
     for i, fname in enumerate(images_right):
         img_r = cv2.imread(images_right[i])
@@ -98,7 +97,11 @@ def main():
         if k == 27:
             break
     cv2.destroyAllWindows()
-    np.save('RightCameraBox.npy',np.array(boxRight))
-
+    dict = {'leftbox': boxLeft, 'rightbox': boxRight}
+    scipy.io.savemat('../boundingBox.mat', dict)
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-l", "--left", type=int, help="left threshold")
+    parser.add_argument("-r", "--right", type=int, help="right threshold")
+    args = parser.parse_args()
     main()
